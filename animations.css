@@ -1,0 +1,280 @@
+/* Advanced Animations and Visual Effects */
+
+/* Floating animation for Pokemon cards */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.pokemon-card {
+    animation: float 6s ease-in-out infinite;
+}
+
+.pokemon-card:nth-child(odd) {
+    animation-delay: -3s;
+}
+
+/* Pulse animation for favorite hearts */
+@keyframes heartPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.favorite-toggle.active {
+    animation: heartPulse 0.6s ease-in-out;
+}
+
+/* Sparkle effect for shiny sprites */
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.pokemon-detail-image[src*="shiny"]::after {
+    content: '✨';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    animation: sparkle 2s infinite;
+}
+
+/* Loading animation enhancement */
+@keyframes loadingPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+.loading {
+    animation: loadingPulse 2s ease-in-out infinite;
+}
+
+/* Type badge glow effect */
+@keyframes typeGlow {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+}
+
+.pokemon-card:hover .type-badge {
+    animation: typeGlow 2s ease-in-out infinite;
+}
+
+/* Stat bar fill animation */
+@keyframes statFill {
+    from {
+        width: 0%;
+    }
+}
+
+.stat-fill {
+    animation: statFill 1.5s ease-out;
+}
+
+/* Evolution chain entrance animation */
+@keyframes evolutionSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.evolution-stage {
+    animation: evolutionSlide 0.6s ease-out;
+}
+
+.evolution-stage:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.evolution-stage:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.evolution-stage:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* Search input focus ripple effect */
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.search-input:focus::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(63, 81, 181, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s linear;
+}
+
+/* Parallax background movement */
+@keyframes parallaxMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+body::before {
+    animation: parallaxMove 20s ease-in-out infinite alternate;
+}
+
+/* Card stack entrance animation */
+@keyframes cardStack {
+    from {
+        opacity: 0;
+        transform: translateY(20px) rotateX(-20deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+.pokemon-card {
+    animation: cardStack 0.6s ease-out;
+}
+
+/* Stagger the card animations */
+.pokemon-card:nth-child(1) { animation-delay: 0.1s; }
+.pokemon-card:nth-child(2) { animation-delay: 0.2s; }
+.pokemon-card:nth-child(3) { animation-delay: 0.3s; }
+.pokemon-card:nth-child(4) { animation-delay: 0.4s; }
+.pokemon-card:nth-child(5) { animation-delay: 0.5s; }
+.pokemon-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Tab switching animation */
+@keyframes tabSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.tab-panel.active {
+    animation: tabSlide 0.3s ease-out;
+}
+
+/* Button press animation */
+@keyframes buttonPress {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.search-btn:active,
+.load-more-btn:active,
+.tab-btn:active {
+    animation: buttonPress 0.1s ease-in-out;
+}
+
+/* Micro-interactions for better UX */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #3f51b5, #9c27b0);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 80%;
+}
+
+/* Image loading fade-in */
+@keyframes imageLoad {
+    from {
+        opacity: 0;
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.pokemon-image,
+.pokemon-detail-image {
+    animation: imageLoad 0.5s ease-out;
+}
+
+/* Filter selection animation */
+@keyframes filterSelect {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.filter-select:focus {
+    animation: filterSelect 0.3s ease-out;
+}

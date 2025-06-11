@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéDex - Explore the World of Pokémon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/pokeball.svg" alt="Pokeball" class="logo-icon">
+                    <h1>PokéDex</h1>
+                </div>
+                <nav class="nav">
+                    <a href="#" class="nav-link active" id="home-link">Home</a>
+                    <a href="#" class="nav-link" id="favorites-link">Favorites</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="search-input" placeholder="Search by name, type, ability, or ID..." class="search-input">
+                        <button id="search-btn" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="filters">
+                        <select id="type-filter" class="filter-select">
+                            <option value="">All Types</option>
+                        </select>
+                        
+                        <select id="generation-filter" class="filter-select">
+                            <option value="">All Generations</option>
+                            <option value="1">Generation I</option>
+                            <option value="2">Generation II</option>
+                            <option value="3">Generation III</option>
+                            <option value="4">Generation IV</option>
+                            <option value="5">Generation V</option>
+                            <option value="6">Generation VI</option>
+                            <option value="7">Generation VII</option>
+                            <option value="8">Generation VIII</option>
+                        </select>
+                        
+                        <button id="clear-filters" class="clear-btn">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section" id="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-pokemon">0</div>
+                        <div class="stat-label">Total Pokémon</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="types-count">0</div>
+                        <div class="stat-label">Types</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="favorites-count">0</div>
+                        <div class="stat-label">Favorites</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div class="loading" id="loading">
+                <img src="assets/loading.svg" alt="Loading" class="loading-spinner">
+                <p>Loading Pokémon...</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="error" id="error" style="display: none;">
+                <div class="error-content">
+                    <i class="fas fa-exclamation-triangle error-icon"></i>
+                    <h3>Oops! Something went wrong</h3>
+                    <p id="error-message">Unable to load Pokémon data. Please check your internet connection and try again.</p>
+                    <button id="retry-btn" class="retry-btn">
+                        <i class="fas fa-redo"></i> Try Again
+                    </button>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <div class="empty-content">
+                    <i class="fas fa-search empty-icon"></i>
+                    <h3>No Pokémon Found</h3>
+                    <p>Try adjusting your search terms or filters.</p>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <section class="results-section" id="results-section">
+                <div class="results-header">
+                    <h2 id="results-title">All Pokémon</h2>
+                    <div class="view-toggle">
+                        <button id="grid-view" class="view-btn active">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button id="list-view" class="view-btn">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="pokemon-grid" id="pokemon-grid">
+                    <!-- Pokemon cards will be dynamically generated here -->
+                </div>
+                
+                <div class="load-more-container">
+                    <button id="load-more" class="load-more-btn" style="display: none;">
+                        Load More Pokémon
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Developer Section -->
+    <section class="developer-section">
+        <div class="container">
+            <div class="developer-card">
+                <div class="developer-info">
+                    <div class="developer-avatar">
+                        <img src="https://github.com/ChristopherJoshy.png" alt="Christopher Joshy" class="avatar-image">
+                        <div class="avatar-ring"></div>
+                    </div>
+                    <div class="developer-details">
+                        <h3>Made by Christopher Joshy</h3>
+                        <p class="developer-title">Web Developer & Computer Science Student</p>
+                        <p class="developer-bio">B.Tech in Computer Science @ St. Joseph's College of Engineering. Passionate about clean code, intuitive design, and interactive experiences.</p>
+                        <div class="developer-links">
+                            <a href="https://github.com/ChristopherJoshy" target="_blank" class="dev-link github">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://linkedin.com/in/christopherjoshy" target="_blank" class="dev-link linkedin">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="mailto:christopherjoshy@example.com" class="dev-link email">
+                                <i class="fas fa-envelope"></i>
+                                <span>Contact</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="github-stats">
+                    <h4>GitHub Statistics</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-star"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="github-stars">24</span>
+                                <span class="stat-label">Total Stars</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-code-branch"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="github-commits">248</span>
+                                <span class="stat-label">Total Commits</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-folder"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="github-repos">1</span>
+                                <span class="stat-label">Total PRs</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-fire"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="github-streak">1</span>
+                                <span class="stat-label">Current Streak</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contribution-graph">
+                        <h5>Contribution Activity</h5>
+                        <div class="graph-container">
+                            <div class="contribution-grid" id="contribution-grid"></div>
+                        </div>
+                        <div class="graph-legend">
+                            <span>Less</span>
+                            <div class="legend-colors">
+                                <div class="legend-color level-0"></div>
+                                <div class="legend-color level-1"></div>
+                                <div class="legend-color level-2"></div>
+                                <div class="legend-color level-3"></div>
+                                <div class="legend-color level-4"></div>
+                            </div>
+                            <span>More</span>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <h5>Technologies</h5>
+                        <div class="tech-tags">
+                            <span class="tech-tag typescript">TypeScript</span>
+                            <span class="tech-tag css">CSS</span>
+                            <span class="tech-tag jupyter">Jupyter</span>
+                            <span class="tech-tag html">HTML</span>
+                            <span class="tech-tag dart">Dart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 PokéDex. Built with <i class="fas fa-heart"></i> using PokéAPI</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

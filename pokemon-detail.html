@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Details - PokéDex</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/pokeball.svg" alt="Pokeball" class="logo-icon">
+                    <h1>PokéDex</h1>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-arrow-left"></i> Back to PokéDex
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Loading State -->
+            <div class="loading" id="loading">
+                <img src="assets/loading.svg" alt="Loading" class="loading-spinner">
+                <p>Loading Pokémon details...</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="error" id="error" style="display: none;">
+                <div class="error-content">
+                    <i class="fas fa-exclamation-triangle error-icon"></i>
+                    <h3>Pokémon Not Found</h3>
+                    <p id="error-message">The requested Pokémon could not be found.</p>
+                    <a href="index.html" class="retry-btn">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                </div>
+            </div>
+
+            <!-- Pokemon Detail Content -->
+            <div class="pokemon-detail" id="pokemon-detail" style="display: none;">
+                <!-- Hero Section -->
+                <section class="pokemon-hero">
+                    <div class="pokemon-hero-content">
+                        <div class="pokemon-basic-info">
+                            <div class="pokemon-id">#<span id="pokemon-id"></span></div>
+                            <h1 class="pokemon-name" id="pokemon-name"></h1>
+                            <div class="pokemon-types" id="pokemon-types"></div>
+                            <button class="favorite-btn" id="favorite-btn">
+                                <i class="far fa-heart"></i>
+                                <span>Add to Favorites</span>
+                            </button>
+                        </div>
+                        <div class="pokemon-image-container">
+                            <img id="pokemon-image" alt="Pokemon Image" class="pokemon-detail-image">
+                            <div class="image-gallery">
+                                <button class="gallery-btn" id="normal-sprite">Normal</button>
+                                <button class="gallery-btn" id="shiny-sprite">Shiny</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tabs Navigation -->
+                <nav class="detail-tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="stats">Stats</button>
+                    <button class="tab-btn" data-tab="evolution">Evolution</button>
+                    <button class="tab-btn" data-tab="moves">Moves</button>
+                    <button class="tab-btn" data-tab="media">Media</button>
+                </nav>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Overview Tab -->
+                    <div class="tab-panel active" id="overview-tab">
+                        <div class="overview-grid">
+                            <div class="info-card">
+                                <h3>Basic Information</h3>
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <span class="info-label">Height:</span>
+                                        <span class="info-value" id="pokemon-height"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Weight:</span>
+                                        <span class="info-value" id="pokemon-weight"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Base Experience:</span>
+                                        <span class="info-value" id="pokemon-experience"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h3>Abilities</h3>
+                                <div class="abilities-list" id="pokemon-abilities"></div>
+                            </div>
+
+                            <div class="info-card full-width">
+                                <h3>Description</h3>
+                                <p class="pokemon-description" id="pokemon-description"></p>
+                            </div>
+
+                            <div class="info-card full-width">
+                                <h3>Famous Quote</h3>
+                                <blockquote class="pokemon-quote" id="pokemon-quote"></blockquote>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Tab -->
+                    <div class="tab-panel" id="stats-tab">
+                        <div class="stats-container">
+                            <h3>Base Stats</h3>
+                            <div class="stats-chart" id="stats-chart"></div>
+                        </div>
+                    </div>
+
+                    <!-- Evolution Tab -->
+                    <div class="tab-panel" id="evolution-tab">
+                        <div class="evolution-container">
+                            <h3>Evolution Chain</h3>
+                            <div class="evolution-chain" id="evolution-chain"></div>
+                        </div>
+                    </div>
+
+                    <!-- Moves Tab -->
+                    <div class="tab-panel" id="moves-tab">
+                        <div class="moves-container">
+                            <h3>Moves</h3>
+                            <div class="moves-filter">
+                                <select id="move-method-filter">
+                                    <option value="">All Learn Methods</option>
+                                    <option value="level-up">Level Up</option>
+                                    <option value="machine">TM/TR</option>
+                                    <option value="egg">Egg Moves</option>
+                                    <option value="tutor">Move Tutor</option>
+                                </select>
+                            </div>
+                            <div class="moves-list" id="moves-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- Media Tab -->
+                    <div class="tab-panel" id="media-tab">
+                        <div class="media-container">
+                            <h3>Appearances</h3>
+                            <div class="media-content" id="media-content">
+                                <p>Media appearance data is limited in the current API. Check back for future updates!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 PokéDex. Built with <i class="fas fa-heart"></i> using PokéAPI</p>
+        </div>
+    </footer>
+
+    <script src="pokemon-detail.js"></script>
+</body>
+</html>
